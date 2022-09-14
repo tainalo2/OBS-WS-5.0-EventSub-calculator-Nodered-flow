@@ -1,0 +1,157 @@
+[
+    {
+        "id": "de5165e65bc0e7e8",
+        "type": "ui_dropdown",
+        "z": "1976d47735f70e40",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "6716656f2c7f778a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": true,
+        "options": [
+            {
+                "label": "General",
+                "value": "0",
+                "type": "str"
+            },
+            {
+                "label": "Config",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "label": "Scenes",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "label": "Inputs",
+                "value": "3",
+                "type": "str"
+            },
+            {
+                "label": "Transitions",
+                "value": "4",
+                "type": "str"
+            },
+            {
+                "label": "Filters",
+                "value": "5",
+                "type": "str"
+            },
+            {
+                "label": "Outputs",
+                "value": "6",
+                "type": "str"
+            },
+            {
+                "label": "SceneItems",
+                "value": "7",
+                "type": "str"
+            },
+            {
+                "label": "MediaInputs",
+                "value": "8",
+                "type": "str"
+            },
+            {
+                "label": "Vendors",
+                "value": "9",
+                "type": "str"
+            },
+            {
+                "label": "Ui",
+                "value": "10",
+                "type": "str"
+            },
+            {
+                "label": "InputVolumeMeters",
+                "value": "16",
+                "type": "str"
+            },
+            {
+                "label": "InputActiveStateChanged",
+                "value": "17",
+                "type": "str"
+            },
+            {
+                "label": "InputShowStateChanged",
+                "value": "18",
+                "type": "str"
+            },
+            {
+                "label": "SceneItemTransformChanged",
+                "value": "19",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "76e27a262e7dd77c"
+            ]
+        ]
+    },
+    {
+        "id": "4d572e6250eeb8a3",
+        "type": "ui_text",
+        "z": "1976d47735f70e40",
+        "group": "6716656f2c7f778a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Result",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 430,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "76e27a262e7dd77c",
+        "type": "function",
+        "z": "1976d47735f70e40",
+        "name": "",
+        "func": "var splitEventSub = \"000000000000000000001\".split(\"\");\n\nfor (var element in msg.payload){\n    splitEventSub[msg.payload[element]] = \"1\";\n}\nmsg.payload = parseInt(splitEventSub.reverse().join(\"\"), 2);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 60,
+        "wires": [
+            [
+                "4d572e6250eeb8a3"
+            ]
+        ]
+    },
+    {
+        "id": "6716656f2c7f778a",
+        "type": "ui_group",
+        "name": "OBS WS 5.0 Event sub calculator",
+        "tab": "03e8d26f4c6af9de",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "03e8d26f4c6af9de",
+        "type": "ui_tab",
+        "name": "OBS WS 5.0 event suv calculator",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
